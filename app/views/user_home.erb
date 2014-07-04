@@ -1,13 +1,14 @@
-<a href="#">Take a Survey</a> <!-- href directed to "/surveys/index" -->
-<a href="#">Create a Survey</a><!-- href directed to "/surveys/new" -->
+<a href="/surveys/index">Take a Survey</a>
+<a href="surveys/new">Create a Survey</a>
 
 <h2>My Surveys</h2>
-<!-- the session with display the survey names that are user owned -->
-<!-- Each Survey will have an 
-Edit(<a href="#">Edit</a>),     take this to the partial page
-Delete(
-<form action="/users/<@user.id>%%=/index">
-	<input type="submit" value="delete">
-</form>,
-)
-Statistics(<a href="/surveys/<@user.id>%%=/stats"></a>)-->
+<% @users.each do |user| %>
+	<% user.surveys.each do |survey| %>
+		<form action="/users/delete" method="POST">
+			<%= survey.name %><br>
+			<a href="#">Edit</a>
+			<input type="submit" value="Delete">
+			<a href="/surveys/<%= @user.id %>/stats">Statistics</a>
+		</form>
+	<% end %>
+<% end %>

@@ -1,3 +1,6 @@
+
+# get====================================
+
 enable :sessions
 
 
@@ -13,6 +16,7 @@ post '/users/login' do
   end
 end
 
+
 get '/users/new' do
 
   erb :sign_up
@@ -25,5 +29,12 @@ post '/users/new' do
 end
 
 get '/users/:id/index' do
+	@users = 
   erb :user_home
+end
+
+# post===================================
+
+post '/users/delete' do
+	@user = Users
 end
