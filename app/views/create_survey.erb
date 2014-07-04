@@ -1,6 +1,6 @@
 
 
-<form name="create_survey" action="#" method="post">
+<form name="create_survey" action="/survey/new" method="post">
 	Input Survey Title:
 	<input type="text" name="survey_title">
 	<input type="submit" value="Submit">
@@ -8,23 +8,41 @@
 
 <% if User.find(session[:user_id]).surveys.find(session[:survey_id]) %>
 
+	<a> You Are Working on: </a>
+	<%= User.find(session[:user_id]).surveys.find(session[:survey_id]).name %>
 
-
-	<form name="question" action="#" method="post">
-		Input Your First Question:
-		<input type="text" name="question">
+	<a>Input Your First Question:</a>
+	<form name="question" action="/surveys/questions/new" method="post">
+		<input type="text" name="question_body">
 		<input type="submit" value="Submit">
 	</form>
 
-	<%= User.find(session[:user_id]).surveys.find(session[:survey_id]).questions.find(session[:question_id]) %>
+		<% if User.find(session[:user_id]).surveys.find(session[:survey_id]).questions.find(session[:question_id]) %>
 
-	<form name="adding choices" action = "#" method="post">
-		Input Your First Choice:
-		<input type="text" name="question">
-		<input type="submit" value="Submit">
-	</form>
+		<a> Add Choices to Your Question:</a>
+		<%= User.find(session[:user_id]).surveys.find(session[:survey_id]).questions.find(session[:question_id]).body %>
 
+		<a>Input Your First Choice:</a>
+		<form name="adding choices" action = "/surveys/questions/choice/new" method="post">
+			<input type="text" name="choice_body">
+			<input type="submit" value="Submit">
+		</form>
 
+			<% if User.find(session[:user_id]).surveys.find(session[:survey_id]).questions.find(session[:question_id]).choices %>
+
+			<a> Add Choices to Your Question:</a>
+			<%= User.find(session[:user_id]).surveys.find(session[:survey_id]).questions.find(session[:question_id]).body %>
+
+			<a>Input Your Second Choice:</a>
+			<form name="adding choices" action = "/surveys/questions/choice/new" method="post">
+				<input type="text" name="choice_body">
+				<input type="submit" value="Submit">
+			</form>
+
+			<% end %>
+		<% end %>
 <% end %>
 
 <% User.find(session[:user_id]).surveys.find(session[:survey_id]).each do |question| %>
+
+<% end %>
