@@ -1,0 +1,30 @@
+
+
+<form name="create_survey" action="#" method="post">
+	Input Survey Title:
+	<input type="text" name="survey_title">
+	<input type="submit" value="Submit">
+</form>
+
+<% if User.find(session[:user_id]).surveys.find(session[:survey_id]) %>
+
+
+
+	<form name="question" action="#" method="post">
+		Input Your First Question:
+		<input type="text" name="question">
+		<input type="submit" value="Submit">
+	</form>
+
+	<%= User.find(session[:user_id]).surveys.find(session[:survey_id]).questions.find(session[:question_id]) %>
+
+	<form name="adding choices" action = "#" method="post">
+		Input Your First Choice:
+		<input type="text" name="question">
+		<input type="submit" value="Submit">
+	</form>
+
+
+<% end %>
+
+<% User.find(session[:user_id]).surveys.find(session[:survey_id]).each do |question| %>

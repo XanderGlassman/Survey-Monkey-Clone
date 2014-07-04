@@ -1,5 +1,5 @@
 get '/surveys/new' do
-  erb :page_create
+  erb :create_survey
 end
 
 get '/surveys/:id/stats' do
