@@ -1,8 +1,23 @@
+enable :sessions
 
 # get====================================
 
-enable :sessions
+get '/users/new' do
 
+  erb :sign_up
+end
+
+get '/users/:id/index' do
+	@users = []
+  erb :user_home
+end
+
+# post===================================
+
+post '/users/logout' do
+	session.clear
+	redirect '/'
+end
 
 post '/users/login' do 
 	session[:user_id] = params[:user_id]
@@ -16,25 +31,8 @@ post '/users/login' do
   end
 end
 
-
-get '/users/new' do
-
-  erb :sign_up
-end
-
 post '/users/new' do
 	@user = User.create(:name => params[:name], :username => params[:username], :email => params[:email], :password => params[:password])
 	session[:user_id] = @user.id
 	redirect "/users/#{@user.id}/index"
-end
-
-get '/users/:id/index' do
-	@users = 
-  erb :user_home
-end
-
-# post===================================
-
-post '/users/delete' do
-	@user = Users
 end
