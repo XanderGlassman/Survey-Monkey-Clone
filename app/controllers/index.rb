@@ -1,5 +1,6 @@
 # index
-get '/' do
+get '/' do	
+	session[:user_id] ||= nil
 	erb :index
 end
 
