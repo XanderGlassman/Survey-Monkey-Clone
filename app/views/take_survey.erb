@@ -1,0 +1,15 @@
+
+<h1>Take the @survey.name survey </h1>
+
+<p>Survey.Questions.all.each do |question|</p>
+
+  <h2>question.name</h2>
+  <form action="post" method="">
+  <p>question.choices.all.each do |choice|</p>
+    <input type="radio" name="choice.question.id[choice.id]" value="choice.body(string interp)"><br>
+  <p>end</p>
+<p>end</p>
+</form>
+
+<!--  -->
+
