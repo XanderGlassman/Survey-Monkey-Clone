@@ -1,48 +1,16 @@
+<% session[:user_id] = 1 %>
 
 
-<form name="create_survey" action="/survey/new" method="post">
-	Input Survey Title:
+<a>Input Survey Title:</a>
+<form name="create_survey" action="/surveys/new" method="post">
 	<input type="text" name="survey_title">
 	<input type="submit" value="Submit">
 </form>
 
-<% if User.find(session[:user_id]).surveys.find(session[:survey_id]) %>
 
-	<a> You Are Working on: </a>
-	<%= User.find(session[:user_id]).surveys.find(session[:survey_id]).name %>
+<% if session[:display] == true %>
 
-	<a>Input Your First Question:</a>
-	<form name="question" action="/surveys/questions/new" method="post">
-		<input type="text" name="question_body">
-		<input type="submit" value="Submit">
-	</form>
-
-		<% if User.find(session[:user_id]).surveys.find(session[:survey_id]).questions.find(session[:question_id]) %>
-
-		<a> Add Choices to Your Question:</a>
-		<%= User.find(session[:user_id]).surveys.find(session[:survey_id]).questions.find(session[:question_id]).body %>
-
-		<a>Input Your First Choice:</a>
-		<form name="adding choices" action = "/surveys/questions/choice/new" method="post">
-			<input type="text" name="choice_body">
-			<input type="submit" value="Submit">
-		</form>
-
-			<% if User.find(session[:user_id]).surveys.find(session[:survey_id]).questions.find(session[:question_id]).choices %>
-
-			<a> Add Choices to Your Question:</a>
-			<%= User.find(session[:user_id]).surveys.find(session[:survey_id]).questions.find(session[:question_id]).body %>
-
-			<a>Input Your Second Choice:</a>
-			<form name="adding choices" action = "/surveys/questions/choice/new" method="post">
-				<input type="text" name="choice_body">
-				<input type="submit" value="Submit">
-			</form>
-
-			<% end %>
-		<% end %>
-<% end %>
-
-<% User.find(session[:user_id]).surveys.find(session[:survey_id]).each do |question| %>
+<%= 'Congrats! You created a Survey' %>
 
 <% end %>
+
