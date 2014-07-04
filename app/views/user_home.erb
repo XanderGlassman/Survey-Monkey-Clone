@@ -2,14 +2,13 @@
 <a href="/surveys/new">Create a Survey</a>
 
 <h2>My Surveys</h2>
-<% @users.each do |user| %>
-	<% user.surveys.each do |survey| %>
+
+	<% @user.surveys.each do |survey| %>
 		<form action="/surveys/delete" method="POST">
 			<%= survey.name %><br>
 			<a href="#">Edit</a>
-			<input type="hidden" name="id" value="<% survey.id %>">
+			<input type="hidden" name="id" value="<%= survey.id %>">
 			<input type="submit" value="Delete">
 			<a href="/surveys/<%= @user.id %>/stats">Statistics</a>
 		</form>
 	<% end %>
-<% end %>

@@ -8,7 +8,7 @@ get '/users/new' do
 end
 
 get '/users/:id/index' do
-	@users = []
+	@user = User.find(session[:user_id])
   erb :user_home
 end
 
