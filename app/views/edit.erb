@@ -6,8 +6,8 @@
   <h2><%=question.body%></h2>
   <form action=<%="/surveys/" + @survey.id.to_s %> method="post">
   <%question.choices.all.each do |choice|%>
-    <input type="radio" name=<%= choice.question.id.to_s  %> value= <%=choice.id%>> <%=choice.body%><br>
-  <%end%>.
+    <input type="text" name=<%= choice.question.id.to_s  %> value= <%=choice.body%>><br>
+  <%end%>
 <%end%>
      <input type="submit" value="submit form!">
   </form>

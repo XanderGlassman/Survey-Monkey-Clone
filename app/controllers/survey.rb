@@ -10,6 +10,10 @@ get '/surveys/index' do
   erb :survey_library
 end
 
+get '/surveys/:id/edit' do
+  erb :edit
+end
+
 get '/surveys/:id' do
   @survey = Survey.find(params[:id])
 
@@ -37,6 +41,8 @@ post "/surveys/create_title" do
   content_type "application/json"
   {question_body: @question.body, question_id: @question.id, survey: @survey.name}.to_json
 end
+
+
 
 post '/surveys/:id' do
   new_completed_survey = CompletedSurvey.create(user_id: session[:user_id], survey_id: params[:id])
