@@ -37,6 +37,4 @@ post '/users/new' do
 	redirect "/users/#{@user.id}/index"
 end
 
-get '/survey/:id/edit' do
-  erb :edit
-end
+
