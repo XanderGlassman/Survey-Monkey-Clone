@@ -40,3 +40,6 @@ input[type="submit"]{
 #signup_button{
   text-align: center;
 }
+ul#errors {
+  color: red;
+}
