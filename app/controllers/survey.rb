@@ -1,3 +1,6 @@
+# get====================================
+
+
 get '/surveys/new' do
   erb :create_survey
 end
@@ -21,6 +24,9 @@ get '/surveys/:id' do
 
   erb :take_survey
 end
+
+# post===================================
+
 
 post '/surveys/delete' do
 	@survey = Survey.find(params[:id])
