@@ -48,4 +48,27 @@ $(document).ready(function() {
       }
     });
   });
+
+    $('#signup form').submit(function(event) {
+        var email = this.email.value;
+        var password = this.password.value;
+        if (email.match(/^.+[@].+[.].+/) === null || password.match(/^(?=.{8,})[a-zA-Z0-9\s\-,]+.\*?$/) === null || password.match(/^(?=.*[A-Z]).+$/) === null || password.match(/^(?=.*\d).+$/) === null) {
+            event.preventDefault();
+            console.log("fail");
+            $("li").remove();
+        }
+        if (email.match(/^.+[@].+[.].+/) === null) {
+            $("#errors").append("<li>Must be a valid email</li>");
+        }
+        if (password.match(/^(?=.{8,})[a-zA-Z0-9\s\-,]+.\*?$/) === null) {
+            $("#errors").append("<li>Password must contain 8 digits</li>");
+        }
+        if (password.match(/^(?=.*[A-Z]).+$/) === null) {
+            $("#errors").append("<li>Password must contain at least one capital letter</li>");
+        }
+        if (password.match(/^(?=.*\d).+$/) === null) {
+            $("#errors").append("<li>Password must contain one number</li>");
+        }
+
+    });
 });
