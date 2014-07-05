@@ -44,10 +44,16 @@ end
 
 post "/surveys/create_title" do
   @survey = Survey.create(name: params[:name], user_id: session[:user_id])
-  @question = Question.create(body: params[:body], survey_id: @survey.id)
 
   content_type "application/json"
-  {question_body: @question.body, question_id: @question.id, survey: @survey.name}.to_json
+  {survey: @survey.name, survey_id: @survey.id}.to_json
+end
+
+post "/surveys/create_question" do
+  @question = Question.create(body: params[:body], survey_id: params[:survey_id])
+
+  content_type "application/json"
+  {question_body: @question.body, question_id: @question.id}.to_json
 end
 
 
