@@ -44,8 +44,6 @@ post "/surveys/create_title" do
   {question_body: @question.body, question_id: @question.id, survey: @survey.name}.to_json
 end
 
-
-
 post '/surveys/:id' do
   new_completed_survey = CompletedSurvey.create(user_id: session[:user_id], survey_id: params[:id])
   survey = Survey.find(params[:id])
