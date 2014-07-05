@@ -1,19 +1,6 @@
-# get '/onlyforfun/new' do
-#   session[:display] = false
-#   redirect '/surveys/new'
-# end
-
 get '/surveys/new' do
   erb :create_survey
 end
-
-# get '/surveys/questions/new' do
-#   erb :create_question
-# end
-
-# get '/surveys/questions/choice/new' do
-#   erb :create_choices
-# end
 
 get '/surveys/:id/stats' do
   erb :stats
@@ -29,34 +16,6 @@ get '/surveys/:id' do
   erb :take_survey
 end
 
-
-
-# post '/surveys/questions/new' do
-#   new_question = Question.create!(body: params[:question_body], survey_id: session[:survey_id])
-#   session[:question_id] = new_question.id
-#   redirect '/surveys/questions/choice/new'
-# end
-
-# post '/surveys/questions/choice/new' do
-#   new_choice = Choice.create!(body: params[:choice_body], question_id: session[:question_id])
-#   session[:choice_id] = new_choice.id
-#   session[:display] = true
-#   redirect '/surveys/new'
-# end
-
-# post '/surveys/new' do
-#   new_survey = Survey.create!(name: params[:survey_title], user_id: session[:user_id])
-#   session[:survey_id] = new_survey.id
-#   redirect '/surveys/questions/new'
-# end
-
-# post '/surveys/finished' do
-#   session['survey_id'].clear
-#   session['question_id'].clear
-#   session['choice_id'].clear
-#   redirect '/users/:id/index'
-# end
-
 post '/surveys/delete' do
 	@survey = Survey.find(params[:id])
 	@survey.destroy
@@ -65,15 +24,14 @@ post '/surveys/delete' do
 end
 
 post "/surveys/create" do
-  puts (params[:choice_body])
-  @choice = Choice.create(:body => params[:choice_body], :question_id => 1)
+  @choice = Choice.create(:body => params[:choice_body], :question_id => params[:question_id].to_i)
 
   content_type "application/json"
   {choice_body: @choice.body }.to_json
 end
 
 post "/surveys/create_title" do
-  @survey = Survey.create(name: params[:name])
+  @survey = Survey.create(name: params[:name], user_id: session[:user_id])
   @question = Question.create(body: params[:body], survey_id: @survey.id)
 
   content_type "application/json"

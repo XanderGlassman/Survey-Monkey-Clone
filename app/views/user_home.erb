@@ -6,7 +6,7 @@
 	<% @user.surveys.each do |survey| %>
 		<form action="/surveys/delete" method="POST">
 			<%= survey.name %><br>
-			<a href="#">Edit</a>
+			<a href=<%= "/surveys/#{survey.id.to_s}/edit"%> >Edit</a>
 			<input type="hidden" name="id" value="<%= survey.id %>">
 			<input type="submit" value="Delete">
 			<a href="/surveys/<%= @user.id %>/stats">Statistics</a>

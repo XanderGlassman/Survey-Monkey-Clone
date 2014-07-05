@@ -19,7 +19,7 @@ post '/users/logout' do
 	redirect '/'
 end
 
-post '/users/login' do 
+post '/users/login' do
 	session[:user_id] = params[:user_id]
 	@user = User.find_by(username: params[:username])
 	session[:user_id] = @user.id
@@ -35,4 +35,8 @@ post '/users/new' do
 	@user = User.create(:name => params[:name], :username => params[:username], :email => params[:email], :password => params[:password])
 	session[:user_id] = @user.id
 	redirect "/users/#{@user.id}/index"
+end
+
+get '/survey/:id/edit' do
+  erb :edit
 end
