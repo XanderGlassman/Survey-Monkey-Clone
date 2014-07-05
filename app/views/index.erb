@@ -1,10 +1,17 @@
-<form action="/users/new" method="get">
-	<input type="submit" value="Sign Up">
-</form>
 
+
+
+<div id = "login">
 <h3>Login:</h3>
+
 <form action = "/users/login" method= "post">
-	<input type="text" name="username" placeholder="Username">
-	<input type="password" name="password" placeholder="Password">
-	<input type="submit" value="login">
+	<input class = "form_box" type="text" name="username" placeholder="Username">
+	<input class = "form_box" type="password" name="password" placeholder="Password">
+	<input id = "submit_button" type="submit" value="login">
 </form>
+</div>
+
+<div id = "signup_button">
+<h3>Not a member?  <a href = "users/new">Sign up!</a></h3>
+<!-- changed signup from button to link -->
+</div>

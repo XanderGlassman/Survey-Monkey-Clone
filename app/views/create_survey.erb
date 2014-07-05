@@ -1,16 +1,21 @@
-<% session[:user_id] = 1 %>
 
-
-<a>Input Survey Title:</a>
-<form name="create_survey" action="/surveys/new" method="post">
-	<input type="text" name="survey_title">
+<div id = "survey_header">
+<form id="create_survey" action="#" method="post">
+	<input type="text" name="name" placeholder = "survey title">
+  <input type="text" name="body" placeholder = "question">
 	<input type="submit" value="Submit">
 </form>
+</div>
+
+<ul>
+
+</ul>
+<form id="create_choice" action="#" method="post">
+  <input type="text" name="choice_body" placeholder = "">
+  <input type="submit" value="Add another choice">
+</form>
+<p>Enter your choices above</p>
+<a href="#" id = "add_choice">Done, Submit Survey</a>
 
 
-<% if session[:display] == true %>
-
-<%= 'Congrats! You created a Survey' %>
-
-<% end %>
 
