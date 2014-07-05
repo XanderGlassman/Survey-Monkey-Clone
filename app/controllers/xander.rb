@@ -9,13 +9,14 @@ get '/surveys/:id' do
 end
 
 post '/surveys/:id' do
-  puts "IS PARAMS WORKING? ---------------------------------------"
-  puts params[:question]
+  new_completed_survey = CompletedSurvey.create(user_id: session[:user_id], survey_id: params[:id])
   survey = Survey.find(params[:id])
+
   survey.questions.each do |question|
-    question.id
+
+    new_answer = Answer.create(user_id: session[:user_id], choice_id: params[question.id.to_s].to_i)
+
   end
-
-
-
+  redirect '/surveys/index'
 end
+

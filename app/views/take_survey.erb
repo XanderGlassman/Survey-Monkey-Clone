@@ -4,12 +4,10 @@
 <%@survey.questions.all.each do |question|%>
   <h2><%=question.body%></h2>
   <form action=<%="/surveys/" + @survey.id.to_s %> method="post">
-    <%question.choices.all.each do |choice|%>
-      <input type="radio" name= <%="question[" + choice.question.id.to_s + "]"%> value=<%=choice.body%>><%=choice.body%><br>
-    <%end%>
-    <input type="submit" value="submit form!">
-  </form>
+  <%question.choices.all.each do |choice|%>
+    <input type="radio" name=<%= choice.question.id.to_s  %> value= <%=choice.id%>> <%=choice.body%><br>
+  <%end%>.
 <%end%>
+     <input type="submit" value="submit form!">
+  </form>
 
-
-<!--  -->
