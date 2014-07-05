@@ -11,6 +11,8 @@ get '/surveys/index' do
 end
 
 get '/surveys/:id/edit' do
+  @survey = Survey.find(params[:id])
+
   erb :edit
 end
 
