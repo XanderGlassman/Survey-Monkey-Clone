@@ -1,3 +1,6 @@
+# get====================================
+
+
 get '/surveys/new' do
   erb :create_survey
 end
@@ -11,6 +14,7 @@ get '/surveys/index' do
 end
 
 get '/surveys/:id/edit' do
+  @user = User.find(session[:user_id])
   @survey = Survey.find(params[:id])
 
   erb :edit
@@ -20,6 +24,20 @@ get '/surveys/:id' do
   @survey = Survey.find(params[:id])
 
   erb :take_survey
+end
+
+# post===================================
+
+post '/surveys/:id/update' do
+  survey = Survey.find(params[:id])
+  question = Question.find_by_survey_id(survey.id)
+  puts question
+  @choice = Choice.find_by_question_id(question.id)
+  puts @choice
+  @choice.body = params[:body]
+  @choice.update(body: params[:body])
+  puts params[:body]
+  redirect "/users/#{session[:user_id]}/index"
 end
 
 post '/surveys/delete' do
@@ -38,10 +56,16 @@ end
 
 post "/surveys/create_title" do
   @survey = Survey.create(name: params[:name], user_id: session[:user_id])
-  @question = Question.create(body: params[:body], survey_id: @survey.id)
 
   content_type "application/json"
-  {question_body: @question.body, question_id: @question.id, survey: @survey.name}.to_json
+  {survey: @survey.name, survey_id: @survey.id}.to_json
+end
+
+post "/surveys/create_question" do
+  @question = Question.create(body: params[:body], survey_id: params[:survey_id])
+
+  content_type "application/json"
+  {question_body: @question.body, question_id: @question.id}.to_json
 end
 
 

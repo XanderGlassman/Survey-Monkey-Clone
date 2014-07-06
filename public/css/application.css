@@ -1,9 +1,23 @@
+body{
+ font-family: 'Ubuntu', sans-serif;
+ background-image: url("http://images.alphacoders.com/111/111201.jpg");
+ background-size: cover;
+}
 .container {
   margin: 20px auto;
   width: 800px;
   height: 800px;
-  padding: 0px 20px 20px 20px;
-  border: 1px dotted black;
+  padding: 10px 20px 20px 20px;
+  border: none;
+  background-color: lightgray;
+  opacity: .7;
+  border-radius: 10px;
+}
+
+input[type="submit"] {
+  background-color: lightblue;
+  margin-left: 21%;
+  margin-top: 10px;
 }
 
 h1 {
@@ -11,35 +25,45 @@ h1 {
   margin-top: 2.5em;
 }
 
-#login, #signup{
+#logout {
+  float: right;
+  margin: 0px 0px;
+}
+
+#login, #signup {
   margin-top: 10em;
   text-align: center;
   margin-bottom: 3em;
 }
-#login h3{
+
+#login h3 {
   text-align: left;
   margin-left: 37%;
   margin-bottom: 0;
 }
-.form_box{
+.form_box {
   display: block;
   margin-left: 37%;
   margin-top: 10px;
 }
 
-input[type="submit"]{
-  margin-left: 21%;
-  margin-top: 10px;
-
-}
-
-#signup_submit{
+#signup_submit {
  margin-left: 20%;
 }
 
-#signup_button{
+#signup_button {
   text-align: center;
 }
+
+#signup_button a {
+  text-decoration: none;
+  color: gray;
+}
+
+#signup_button a:hover {
+  color: orange;
+}
+
 ul#errors {
   color: red;
 }
