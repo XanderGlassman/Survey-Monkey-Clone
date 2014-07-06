@@ -1,63 +1,88 @@
+var bind_delete = function() {
+    $('form#delete').on("click", function(event) {
+        var that = $(this).children().attr('value');
+        var getter = $(this)
+        event.preventDefault();
+        console.log("prevented default")
+        console.log(that);
+        $.ajax({
+            url: '/surveys/delete',
+            type: 'POST',
+            data: {
+                id: that
+            },
+            dataType: 'json',
+            success: function(result) {
+                console.log(result)
+                getter.closest("article").remove();
+                bind_delete();
+            }
+        });
+
+    });
+};
+
 $(document).ready(function() {
-  $("#create_choice").hide()
-  $("#create_question").hide()
-  $("#create_another").hide()
-  $("#create_survey").on("submit" , function(event){
-    event.preventDefault();
-    $.ajax({
-      url: "/surveys/create_title",
-      type: "POST",
-      data: $(this).serialize(),
-      dataType: "json",
-      success: function(result){
-        console.log(result);
-        $("#survey_header").prepend("<h3>" + result.survey + "</h3>")
-        $("#create_survey").hide();
-        $("#create_question input[type = 'hidden']").val(result.survey_id)
-        $("#create_question").show()
-      }
+    bind_delete();
+    $("#create_choice").hide()
+    $("#create_question").hide()
+    $("#create_another").hide()
+    $("#create_survey").on("submit", function(event) {
+        event.preventDefault();
+        $.ajax({
+            url: "/surveys/create_title",
+            type: "POST",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(result) {
+                console.log(result);
+                $("#survey_header").prepend("<h3>" + result.survey + "</h3>")
+                $("#create_survey").hide();
+                $("#create_question input[type = 'hidden']").val(result.survey_id)
+                $("#create_question").show()
+            }
+        });
     });
-  });
-    $("#create_choice").on("submit" , function(event){
-    event.preventDefault();
-    $.ajax({
-      url: "/surveys/create",
-      type: "POST",
-      data: $(this).serialize(),
-      dataType: "json",
-      success: function(result){
-        console.log(result);
-        $("ul").append("<li>" + result.choice_body + "</li>");
-        $("#create_choice input[type = 'text']").val("")
+    $("#create_choice").on("submit", function(event) {
+        event.preventDefault();
+        $.ajax({
+            url: "/surveys/create",
+            type: "POST",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(result) {
+                console.log(result);
+                $("ul").append("<li>" + result.choice_body + "</li>");
+                $("#create_choice input[type = 'text']").val("")
 
-      }
+            }
+        });
     });
-  });
-    $("#create_question").on("submit" , function(event){
-    event.preventDefault();
-    $.ajax({
-      url: "/surveys/create_question",
-      type: "POST",
-      data: $(this).serialize(),
-      dataType: "json",
-      success: function(result){
-        console.log(result);
-        $("ul").append("<li><h3>" + result.question_body + "</h3></li>");
-        $("#create_choice input[type = 'hidden']").val(result.question_id)
-        $("#create_question input[type = 'text']").val("")
-        $("#create_choice").show()
-        $("#create_question").hide()
-        $("#create_another").show()
-      }
-    });
+    $("#create_question").on("submit", function(event) {
+        event.preventDefault();
+        $.ajax({
+            url: "/surveys/create_question",
+            type: "POST",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(result) {
+                console.log(result);
+                $("ul").append("<li><h3>" + result.question_body + "</h3></li>");
+                $("#create_choice input[type = 'hidden']").val(result.question_id)
+                $("#create_question input[type = 'text']").val("")
+                $("#create_choice").show()
+                $("#create_question").hide()
+                $("#create_another").show()
+            }
+        });
 
-    $('#create_another').on('click', function(event){
-      event.preventDefault();
-      $('#create_question').show();
-      $('#create_another').hide();
-      $('#create_choice').hide();
+        $('#create_another').on('click', function(event) {
+            event.preventDefault();
+            $('#create_question').show();
+            $('#create_another').hide();
+            $('#create_choice').hide();
+        });
     });
-  });
 
     $('#signup form').submit(function(event) {
         var email = this.email.value;
@@ -80,19 +105,5 @@ $(document).ready(function() {
             $("#errors").append("<li>Password must contain one  number</li>");
         }
     });
-    // $('.buttons input#delete').on("click", function(event){
-    //   event.preventDefault ();
-    //   console.log("prevented default")
-    //   var that = $(this);
-    //   var value = $('#jsondelete');
-    //   console.log(that);
-    //   $.ajax({
-    //     url: '/surveys/delete',
-    //     type: 'POST',
-    //     success: function(result) {
-    //       console.log(result)
-    //       that.closest("article").remove();
-    //     }
-    //   });
-    // });
+
 });
