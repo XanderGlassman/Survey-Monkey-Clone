@@ -1,4 +1,4 @@
-<!-- < @surveys.each do |survey| >%% 
+<!-- < @surveys.each do |survey| >%%
 		 		<if survey.id == session[:survey] >%%
 		 			<h1>< survey.name >%%=</h1>
 					puts the stats here plugins or whatver
@@ -7,3 +7,9 @@
 -->
 
 <h1>Home Link 	<a href="/users/<%= session[:user_id] %>/index">Home</a></h1>
+
+<div id="chart_div"></div>
+
+<form id="survey_id" action="#" method="post">
+  <input id="survey_id_input" type="hidden" name="survey_id" value=<%=@survey_id%>>
+</form>
