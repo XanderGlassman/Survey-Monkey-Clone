@@ -1,6 +1,7 @@
 $(document).ready(function() {
   $("#create_choice").hide()
   $("#create_question").hide()
+  $("#create_another").hide()
   $("#create_survey").on("submit" , function(event){
     event.preventDefault();
     $.ajax({
@@ -45,7 +46,16 @@ $(document).ready(function() {
         $("#create_choice input[type = 'hidden']").val(result.question_id)
         $("#create_question input[type = 'text']").val("")
         $("#create_choice").show()
+        $("#create_question").hide()
+        $("#create_another").show()
       }
+    });
+
+    $('#create_another').on('click', function(event){
+      event.preventDefault();
+      $('#create_question').show();
+      $('#create_another').hide();
+      $('#create_choice').hide();
     });
   });
 

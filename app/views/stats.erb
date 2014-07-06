@@ -1,4 +1,4 @@
-<!-- < @surveys.each do |survey| >%% 
+<!-- < @surveys.each do |survey| >%%
 		 		<if survey.id == session[:survey] >%%
 		 			<h1>< survey.name >%%=</h1>
 					puts the stats here plugins or whatver
@@ -6,4 +6,4 @@
 		 < end >%%
 -->
 
-<h1>Home Link 	<a href="/users/<%= session[:user_id] %>/index">Home</a></h1>
+<h1 class="homelink" ><a href="/users/<%= session[:user_id] %>/index">Home</a></h1>
