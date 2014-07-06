@@ -1,14 +1,29 @@
-<a href="/surveys/index">Take a Survey</a>
-<a href="/surveys/new">Create a Survey</a>
-
-<h2>My Surveys</h2>
+<div id= 'userhome'>
+<a class = 'takecreate' href="/surveys/index">Take a Survey</a>
+<a class = 'takecreate' href="/surveys/new">Create a Survey</a>
+</div>
+<div id="userhome">
+<h2>My Surveys:</h2>
 
 	<% @user.surveys.each do |survey| %>
-		<form action="/surveys/delete" method="POST">
-			<%= survey.name %><br>
-			<a href=<%= "/surveys/#{survey.id.to_s}/edit"%> >Edit</a>
-			<input type="hidden" name="id" value="<%= survey.id %>">
-			<input type="submit" value="Delete">
-			<a href="/surveys/<%= @user.id %>/stats">Statistics</a>
-		</form>
+
+
+  <article id ="<%=survey.id%>">
+  <p id= 'surveyname' ><%= survey.name %></p><br>
+  <div class="buttonbox">
+    <form class = 'buttons'  action=<%= "/surveys/#{survey.id.to_s}/edit"%> method="GET">
+      <input type="hidden" name="id" value="<%= survey.id %>">
+      <input id="edit" type="submit" value="Edit">
+    </form>
+    <form class = 'buttons'  action="/surveys/delete" method="POST">
+      <input id = "jsondelete" type="hidden" name="id" value="<%= survey.id %>">
+      <input  id = "delete" type="submit" value="Delete">
+    </form>
+    <form class = 'buttons' action="/surveys/<%= @user.id %>/stats" method="GET">
+      <input type="hidden" name="id" value="<%= survey.id %>">
+      <input id="stats" type="submit" value="Stats">
+    </form>
+  </div>
+  </article>
 	<% end %>
+</div>

@@ -1,12 +1,14 @@
 body{
  font-family: 'Ubuntu', sans-serif;
- background-image: url("http://images.alphacoders.com/111/111201.jpg");
+ background-image: url("http://i166.photobucket.com/albums/u93/snow_wolf_31/BaldEagle.jpg");
  background-size: cover;
+ color: #00002E;
 }
+
 .container {
   margin: 20px auto;
   width: 800px;
-  height: 800px;
+  height: 100%;
   padding: 10px 20px 20px 20px;
   border: none;
   background-color: lightgray;
@@ -18,11 +20,151 @@ input[type="submit"] {
   background-color: lightblue;
   margin-left: 21%;
   margin-top: 10px;
+  border-radius: 5px;
 }
 
 h1 {
   text-align: center;
   margin-top: 2.5em;
+}
+
+.takecreate {
+  margin: 10px 40px
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+  border-radius: 5px;
+}
+
+.buttons {
+  display: inline-block;
+  margin: 0px 9px;
+  margin-bottom: 8px;
+}
+
+.buttonbox {
+  margin: auto;
+  width: 300px;
+  background-color: navy;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px #888888;
+}
+
+.homelink {
+  margin: 10px 40px
+  font-weight: bold;
+  text-decoration: none;
+  background-color: lightblue;
+  color: navy;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+  border-radius: 5px;
+  width: 125px;
+  margin: auto;
+  margin-top: 45px;
+  margin-bottom: 30px;
+}
+
+.homelink a {
+  text-decoration: none;
+  color: navy;
+}
+
+.homelink a:hover {
+  color: salmon;
+}
+
+#create_another {
+  width: 175px;
+  margin-left: 85px;
+  margin-top: 10px;
+  display: block;
+}
+
+.surveylinks {
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: navy;
+}
+
+.surveylinks:hover {
+  color: salmon;
+  font-style: italic;
+}
+
+.surveylinks p {
+ border-bottom: solid crimson;
+ width: 8em;
+ margin: auto;
+ margin-top: 10px;
+ padding-bottom: 7px;
+}
+
+#centercreate {
+  width: 50%;
+  margin: auto;
+}
+
+#survey_question {
+  margin-left: 40px;
+}
+
+#survey_body {
+  margin-left: 65px;
+}
+
+#survey_submit {
+  margin-left: 40px;
+  margin-top: 30px;
+}
+
+#surveydiv {
+  width: 10em;
+  margin: auto;
+}
+
+#delete{
+  margin-left: 20px;
+}
+
+#stats {
+}
+
+ #surveyname {
+  display:block;
+  margin-bottom: 0px;
+  text-decoration: underline;
+ }
+
+#userhome {
+ text-align: center;
+}
+
+#userhome h2 {
+  margin-top: 45px;
+  margin-bottom: 45px;
+}
+
+#merica {
+  background-image: url('http://radio.foxnews.com/toddstarnes/wp-content/uploads/2011/09/american-flag-2a2.jpg');
+  width: 70%;
+  margin: 80px auto;
+  font-size: 3em;
+  text-shadow: 1px 1px black;
+  color: white;
+  line-height: 3.5em;
+  border-radius: 10px;
 }
 
 #logout {
@@ -31,7 +173,7 @@ h1 {
 }
 
 #login, #signup {
-  margin-top: 10em;
+  margin-top: 8em;
   text-align: center;
   margin-bottom: 3em;
 }

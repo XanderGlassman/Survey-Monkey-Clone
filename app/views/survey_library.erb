@@ -1,6 +1,7 @@
+<div id="surveydiv">
 <% Survey.all.each do |survey| %>
-  <a href= "/surveys/<%= survey.id %>"><p><%= survey.name %></p></a>
+  <a class="surveylinks" href= "/surveys/<%= survey.id %>"><p><%= survey.name %></p></a>
 <% end %>
 
-<h1>Home Link 	<a href="/users/<%= session[:user_id] %>/index">Home</a></h1>
-
+<h1 class="homelink" ><a href="/users/<%= session[:user_id] %>/index">Home</a></h1>
+</div>
