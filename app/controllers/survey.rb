@@ -14,7 +14,7 @@ get '/surveys/index' do
 end
 
 get '/surveys/:id/edit' do
-  @user = User.find(params[:id])
+  @user = User.find(session[:user_id])
   @survey = Survey.find(params[:id])
 
   erb :edit
@@ -28,6 +28,17 @@ end
 
 # post===================================
 
+post '/surveys/:id/update' do
+  survey = Survey.find(params[:id])
+  question = Question.find_by_survey_id(survey.id)
+  puts question
+  @choice = Choice.find_by_question_id(question.id)
+  puts @choice
+  @choice.body = params[:body]
+  @choice.update(body: params[:body])
+  puts params[:body]
+  redirect "/users/#{session[:user_id]}/index"
+end
 
 post '/surveys/delete' do
 	@survey = Survey.find(params[:id])

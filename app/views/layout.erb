@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- 
+  <!--
     normalize.css removes cross-browser differences in defaults, e.g.,
     differences in how form elements appear between Firefox and IE
     See: http://necolas.github.com/normalize.css/
   -->
   <link rel="stylesheet" href="/css/normalize.css">
+  <link href='http://fonts.googleapis.com/css?family=Ubuntu:500' rel='stylesheet' type='text/css'>
   <!--
     application.css is where you put your styles
   -->
@@ -18,13 +19,14 @@
   <title></title>
 </head>
 <body>
-  <% if session[:user_id] != nil %>
+
+  <div class="container">
+    <% if session[:user_id] != nil %>
     <form action='/users/logout' method='post'>
-      <input type='submit' value='logout'>
+      <input id = "logout" type='submit' value='logout'>
     </form>
   <% end %>
-  <div class="container">
-    <h1>Pizza Wolf Merica</h1>
+    <h1 id="merica" >Pizza Wolf Merica</h1>
     <%= yield %>
   </div>
 </body>
