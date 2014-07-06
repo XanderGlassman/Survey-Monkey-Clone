@@ -67,8 +67,22 @@ $(document).ready(function() {
             $("#errors").append("<li>Password must contain at least one capital letter</li>");
         }
         if (password.match(/^(?=.*\d).+$/) === null) {
-            $("#errors").append("<li>Password must contain one number</li>");
+            $("#errors").append("<li>Password must contain one  number</li>");
         }
-
     });
+    // $('.buttons input#delete').on("click", function(event){
+    //   event.preventDefault ();
+    //   console.log("prevented default")
+    //   var that = $(this);
+    //   var value = $('#jsondelete');
+    //   console.log(that);
+    //   $.ajax({
+    //     url: '/surveys/delete',
+    //     type: 'POST',
+    //     success: function(result) {
+    //       console.log(result)
+    //       that.closest("article").remove();
+    //     }
+    //   });
+    // });
 });

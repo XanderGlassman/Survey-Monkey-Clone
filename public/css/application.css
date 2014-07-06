@@ -2,11 +2,12 @@ body{
  font-family: 'Ubuntu', sans-serif;
  background-image: url("http://images.alphacoders.com/111/111201.jpg");
  background-size: cover;
+ color: #00002E;
 }
 .container {
   margin: 20px auto;
   width: 800px;
-  height: 800px;
+  height: 100%;
   padding: 10px 20px 20px 20px;
   border: none;
   background-color: lightgray;
@@ -25,13 +26,74 @@ h1 {
   margin-top: 2.5em;
 }
 
+.takecreate {
+  margin: 10px 40px
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+  border-radius: 5px;
+}
+
+.buttons {
+  display: inline-block;
+  margin: 0px 9px;
+  margin-bottom: 8px;
+}
+
+.buttonbox {
+  margin: auto;
+  width: 300px;
+  background-color: navy;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px #888888;
+}
+
+#delete{
+  margin-left: 20px;
+}
+
+#stats {
+}
+
+ #surveyname {
+  display:block;
+  margin-bottom: 0px;
+  text-decoration: underline;
+ }
+
+#userhome {
+ text-align: center;
+}
+
+#userhome h2 {
+  margin-top: 45px;
+  margin-bottom: 45px;
+}
+
+#merica {
+  background-image: url('http://radio.foxnews.com/toddstarnes/wp-content/uploads/2011/09/american-flag-2a2.jpg');
+  width: 70%;
+  margin: 80px auto;
+  font-size: 3em;
+  text-shadow: 1px 1px black;
+  color: white;
+  line-height: 3.5em;
+  border-radius: 10px;
+}
+
 #logout {
   float: right;
   margin: 0px 0px;
 }
 
 #login, #signup {
-  margin-top: 10em;
+  margin-top: 8em;
   text-align: center;
   margin-bottom: 3em;
 }
