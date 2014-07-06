@@ -1,18 +1,23 @@
 
 
 <h1>Edit <%= @user.name %>'s <%=@survey.name%> survey </h1>
-
-<%@survey.questions.all.each do |question|%>
-  <h2><%=question.body%></h2>
+<table>
   <form action=<%="/surveys/" + @survey.id.to_s + "/update" %> method="post">
-  <%question.choices.all.each do |choice|%>
-
-    <input type="text" name="body" value= "<%= choice.body %>"><br>
-
-
-  <%end%>
-<%end%>
-  <input type="submit" value="submit form!">
+    <tr>
+      <label for="survey[name]"><h2>Current Title: </label>
+      <input type="text" name="survey[name]" value="<%=@survey.name%>"></h2>
+    </tr>
+      <%@survey.questions.all.order("id").each do |question|%>
+        <tr><label for=<%=question.id.to_s %> ><h3>Current Question: </label>
+        <input type="text" name=<%=question.id.to_s %> value="<%=question.body%>"></h3></tr>
+          <% question.choices.all.each do |choice| %>
+            <tr><label for="choice<%=choice.id.to_s%>[body]"><h4>Current Choice: </label>
+              <input type="text" name="choice<%=choice.id.to_s%>[body]" value="<%=choice.body%>"></h4>
+            </tr>
+          <% end %>
+      <%end%>
+    <input type="submit" value="submit form!">
   </form>
+</table>
 
 <h1>Home Link 	<a href="/users/<%= session[:user_id] %>/index">Home</a></h1>

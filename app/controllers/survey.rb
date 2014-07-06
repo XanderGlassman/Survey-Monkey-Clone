@@ -16,13 +16,11 @@ end
 get '/surveys/:id/edit' do
   @user = User.find(session[:user_id])
   @survey = Survey.find(params[:id])
-
   erb :edit
 end
 
 get '/surveys/:id' do
   @survey = Survey.find(params[:id])
-
   erb :take_survey
 end
 
@@ -30,15 +28,31 @@ end
 
 post '/surveys/:id/update' do
   survey = Survey.find(params[:id])
-  question = Question.find_by_survey_id(survey.id)
-  puts question
-  @choice = Choice.find_by_question_id(question.id)
-  puts @choice
-  @choice.body = params[:body]
-  @choice.update(body: params[:body])
-  puts params[:body]
+    survey.update_attributes(params[:survey])
+
+    survey.questions.each do |question|
+      question.update(body: params[question.id.to_s])
+        question.choices.each do |choice|
+          choice.update(params["choice#{choice.id}"])
+        end
+    end
   redirect "/users/#{session[:user_id]}/index"
 end
+
+
+
+post '/surveys/:id' do
+  new_completed_survey = CompletedSurvey.create(user_id: session[:user_id], survey_id: params[:id])
+  survey = Survey.find(params[:id])
+
+  survey.questions.each do |question|
+
+    new_answer = Answer.create(user_id: session[:user_id], choice_id: params[question.id.to_s].to_i)
+  end
+  redirect '/surveys/index'
+end
+
+
 
 post '/surveys/delete' do
 	@survey = Survey.find(params[:id])
@@ -70,15 +84,4 @@ end
 
 
 
-post '/surveys/:id' do
-  new_completed_survey = CompletedSurvey.create(user_id: session[:user_id], survey_id: params[:id])
-  survey = Survey.find(params[:id])
-
-  survey.questions.each do |question|
-
-    new_answer = Answer.create(user_id: session[:user_id], choice_id: params[question.id.to_s].to_i)
-
-  end
-  redirect '/surveys/index'
-end
 
