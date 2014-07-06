@@ -36,6 +36,20 @@ post '/surveys/delete' do
 	redirect "/users/#{session[:user_id]}/index"
 end
 
+post '/surveys/:id' do
+  new_completed_survey = CompletedSurvey.create(user_id: session[:user_id], survey_id: params[:id])
+  survey = Survey.find(params[:id])
+
+  survey.questions.each do |question|
+
+    new_answer = Answer.create(user_id: session[:user_id], choice_id: params[question.id.to_s].to_i)
+
+  end
+  redirect '/surveys/index'
+end
+
+# post/json========================================
+
 post "/surveys/create" do
   @choice = Choice.create(:body => params[:choice_body], :question_id => params[:question_id].to_i)
 
@@ -56,18 +70,3 @@ post "/surveys/create_question" do
   content_type "application/json"
   {question_body: @question.body, question_id: @question.id}.to_json
 end
-
-
-
-post '/surveys/:id' do
-  new_completed_survey = CompletedSurvey.create(user_id: session[:user_id], survey_id: params[:id])
-  survey = Survey.find(params[:id])
-
-  survey.questions.each do |question|
-
-    new_answer = Answer.create(user_id: session[:user_id], choice_id: params[question.id.to_s].to_i)
-
-  end
-  redirect '/surveys/index'
-end
-
