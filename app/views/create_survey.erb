@@ -2,7 +2,6 @@
 <div id = "survey_header">
 <form id="create_survey" action="#" method="post">
 	<input type="text" name="name" placeholder = "survey title">
-  <input type="text" name="body" placeholder = "question">
 	<input type="submit" value="Submit">
 </form>
 </div>
@@ -10,6 +9,12 @@
 <ul>
 
 </ul>
+<form id="create_question" action="#" method="post">
+  <input type="text" name="body" placeholder = "question">
+  <input type="hidden" name="survey_id">
+  <input type="submit" value="Add Question">
+</form>
+
 <form id="create_choice" action="#" method="post">
   <input type="text" name="choice_body" placeholder = "">
   <input type="hidden" name="question_id">
@@ -17,6 +22,7 @@
 </form>
 <p>Enter your choices above</p>
 <a href="/users/:id/index" id = "add_choice">Done, Submit Survey</a>
+<h1>Home Link 	<a href="/users/<%= session[:user_id] %>/index">Home</a></h1>
 
 
 

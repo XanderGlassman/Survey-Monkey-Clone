@@ -6,7 +6,9 @@
   <h2><%=question.body%></h2>
   <form action=<%="/surveys/" + @survey.id.to_s + "/update" %> method="post">
   <%question.choices.all.each do |choice|%>
+
     <input type="text" name="body" value= "<%= choice.body %>"><br>
+
 
   <%end%>
 <%end%>
