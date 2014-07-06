@@ -15,9 +15,9 @@
       <input type="hidden" name="id" value="<%= survey.id %>">
       <input id="edit" type="submit" value="Edit">
     </form>
-    <form class = 'buttons'  action="/surveys/delete" method="POST">
+    <form id = "delete"  class = 'buttons'  action="/surveys/delete" method="POST">
       <input id = "jsondelete" type="hidden" name="id" value="<%= survey.id %>">
-      <input  id = "delete" type="submit" value="Delete">
+      <input  type="submit" value="Delete">
     </form>
     <form class = 'buttons' action="/surveys/<%= @user.id %>/stats" method="GET">
       <input type="hidden" name="id" value="<%= survey.id %>">
