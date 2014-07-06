@@ -26,33 +26,6 @@ end
 
 # post===================================
 
-post '/surveys/:id/update' do
-  survey = Survey.find(params[:id])
-    survey.update_attributes(params[:survey])
-
-    survey.questions.each do |question|
-      question.update(body: params[question.id.to_s])
-        question.choices.each do |choice|
-          choice.update(params["choice#{choice.id}"])
-        end
-    end
-  redirect "/users/#{session[:user_id]}/index"
-end
-
-
-
-post '/surveys/:id' do
-  new_completed_survey = CompletedSurvey.create(user_id: session[:user_id], survey_id: params[:id])
-  survey = Survey.find(params[:id])
-
-  survey.questions.each do |question|
-
-    new_answer = Answer.create(user_id: session[:user_id], choice_id: params[question.id.to_s].to_i)
-  end
-  redirect '/surveys/index'
-end
-
-
 
 post '/surveys/delete' do
 	@survey = Survey.find(params[:id])
@@ -80,6 +53,30 @@ post "/surveys/create_question" do
 
   content_type "application/json"
   {question_body: @question.body, question_id: @question.id}.to_json
+end
+
+post '/surveys/:id' do
+  new_completed_survey = CompletedSurvey.create(user_id: session[:user_id], survey_id: params[:id])
+  survey = Survey.find(params[:id])
+
+  survey.questions.each do |question|
+
+    new_answer = Answer.create(user_id: session[:user_id], choice_id: params[question.id.to_s].to_i)
+  end
+  redirect '/surveys/index'
+end
+
+post '/surveys/:id/update' do
+  survey = Survey.find(params[:id])
+    survey.update_attributes(params[:survey])
+
+    survey.questions.each do |question|
+      question.update(body: params[question.id.to_s])
+        question.choices.each do |choice|
+          choice.update(params["choice#{choice.id}"])
+        end
+    end
+  redirect "/users/#{session[:user_id]}/index"
 end
 
 
