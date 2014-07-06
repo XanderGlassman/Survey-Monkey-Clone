@@ -1,0 +1,19 @@
+
+<h1>Stats for the <%=@survey.name%> survey </h1>
+
+<%@survey.questions.all.each do |question|%>
+  <h2><%=question.body%></h2>
+  <%question_answers = []%>
+  <%question.choices.each do |c|%>
+    <%question_answers << c.answers.length%>
+  <%end%>
+  <%total = question_answers.inject(:+)%>
+  <%question.choices.each do |choice|%>
+    <%=choice.body%>:
+    <%=(((choice.answers.length).to_f / total.to_f)*100).round(2) %>% of <%=total%> responces<br>
+  <%end%>
+<%end%>
+
+
+  <h1>Home Link   <a href="/users/<%= session[:user_id] %>/index">Home</a></h1>
+

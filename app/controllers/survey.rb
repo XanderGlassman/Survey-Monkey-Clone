@@ -6,7 +6,11 @@ get '/surveys/new' do
 end
 
 get '/surveys/:id/stats' do
-  erb :stats
+  @survey = Survey.find(params[:id])
+  @total_answers_per_question = @survey
+
+  erb :new_stats
+
 end
 
 get '/surveys/index' do
@@ -26,6 +30,24 @@ end
 
 # post===================================
 
+# get '/surveys/:id/stats' do
+#   @survey = Survey.find(session[:survey_id])
+#   session[:survey_id] = nil
+
+#   hash = {}
+
+#   @survey.questions.each_with_index do |question, index|
+#     object = "#{question}#{index}": "question.name"
+#     hash.merge!(object)
+#   end
+
+#   puts "00-------------------------------------------------------00"
+#   puts hash
+#   erb :stats
+
+#   # content_type "application/json"
+#   # {survey_name: @survey.name}.to_json
+# end
 
 post '/surveys/delete' do
 	@survey = Survey.find(params[:id])
