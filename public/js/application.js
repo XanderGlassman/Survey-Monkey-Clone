@@ -1,6 +1,7 @@
 $(document).ready(function() {
   $("#create_choice").hide()
   $("#create_question").hide()
+  $("#create_another").hide()
   $("#create_survey").on("submit" , function(event){
     event.preventDefault();
     $.ajax({
@@ -45,7 +46,16 @@ $(document).ready(function() {
         $("#create_choice input[type = 'hidden']").val(result.question_id)
         $("#create_question input[type = 'text']").val("")
         $("#create_choice").show()
+        $("#create_question").hide()
+        $("#create_another").show()
       }
+    });
+
+    $('#create_another').on('click', function(event){
+      event.preventDefault();
+      $('#create_question').show();
+      $('#create_another').hide();
+      $('#create_choice').hide();
     });
   });
 
@@ -67,8 +77,22 @@ $(document).ready(function() {
             $("#errors").append("<li>Password must contain at least one capital letter</li>");
         }
         if (password.match(/^(?=.*\d).+$/) === null) {
-            $("#errors").append("<li>Password must contain one number</li>");
+            $("#errors").append("<li>Password must contain one  number</li>");
         }
-
     });
+    // $('.buttons input#delete').on("click", function(event){
+    //   event.preventDefault ();
+    //   console.log("prevented default")
+    //   var that = $(this);
+    //   var value = $('#jsondelete');
+    //   console.log(that);
+    //   $.ajax({
+    //     url: '/surveys/delete',
+    //     type: 'POST',
+    //     success: function(result) {
+    //       console.log(result)
+    //       that.closest("article").remove();
+    //     }
+    //   });
+    // });
 });

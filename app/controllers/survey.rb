@@ -52,8 +52,9 @@ end
 post '/surveys/delete' do
 	@survey = Survey.find(params[:id])
 	@survey.destroy
-	# This will be json!!!!!!!!!!!!!!!!
-	redirect "/users/#{session[:user_id]}/index"
+  redirect "/users/#{session[:user_id]}/index"
+  # content_type "application/json"
+  # {id: @survey.id}.to_json
 end
 
 post "/surveys/create" do
